@@ -7,6 +7,7 @@ public class Spawner : MonoBehaviour
     public int numberToSpawn;
     public List<GameObject> spawnPool;
     public GameObject quad;
+    public int appleCount = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +17,14 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        int c = 0;
+        foreach (GameObject o in GameObject.FindGameObjectsWithTag("Apple"))
+        {
+            c++;
+        }
+        if(c == 0){
+            spawnObjects();
+        }
     }
 
     public void spawnObjects()
@@ -33,6 +41,7 @@ public class Spawner : MonoBehaviour
         {
             randomItem = Random.Range(0,spawnPool.Count);
             toSpawn = spawnPool[randomItem];
+            toSpawn.gameObject.tag = "Apple";
 
             screenX = Random.Range(c.bounds.min.x,c.bounds.max.x);
             float stepSize = 0.8f;
