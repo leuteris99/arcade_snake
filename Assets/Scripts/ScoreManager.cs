@@ -7,7 +7,7 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager instance;
 
-    public Text scoreText;
+    public Text scoreText; // the ui score element.
 
     int score = 0;
     string printingScoreString = " Points";
