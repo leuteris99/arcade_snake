@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public int numberToSpawn;
+    public int numberToSpawn; // the number of Apples to spawn each time.
     public List<GameObject> spawnPool;
-    public GameObject quad;
+    public GameObject quad; // the area in which apples can spawn.
     // Start is called before the first frame update
     void Start()
     {
@@ -16,12 +16,21 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // if there are no apples in the scene than respawn them.
+        int c = 0;
+        foreach (GameObject o in GameObject.FindGameObjectsWithTag("Apple"))
+        {
+            c++;
+        }
+        if(c == 0){
+            spawnObjects();
+        }
     }
 
+    // Spawning the apples.
     public void spawnObjects()
     {
-        int randomItem =0;
+        int randomItem = 0;
         GameObject toSpawn;
         MeshCollider c = quad.GetComponent<MeshCollider>();
 
@@ -33,6 +42,7 @@ public class Spawner : MonoBehaviour
         {
             randomItem = Random.Range(0,spawnPool.Count);
             toSpawn = spawnPool[randomItem];
+            toSpawn.gameObject.tag = "Apple";
 
             screenX = Random.Range(c.bounds.min.x,c.bounds.max.x);
             float stepSize = 0.8f;
@@ -47,6 +57,7 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    // destroying all the apples.
     private void destroyObjects(){
         foreach (GameObject o in GameObject.FindGameObjectsWithTag("Spawnable"))
         {
