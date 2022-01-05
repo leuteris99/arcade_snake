@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -99,9 +100,11 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Apple")) // if the player pass through an Apple...
         {
+            GameObject child = other.transform.GetChild(0).gameObject;
+            string text = child.GetComponent<TextMesh>().text;
             // than destroy the Apple and a point to the scoreboard.
             Destroy(other.gameObject);
-            ScoreManager.instance.addPoint();
+            ScoreManager.instance.AddPoint(int.Parse(text));
         }
     }
 
