@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
         //_stepDistance = 0.6f;
         _isMoving = true;
         _gridPosition = new Vector2Int(-3, 0);
-        _gridMoveTimerMax = 0.5f;
+        _gridMoveTimerMax = 0.4f;
         _gridMoveTimer = _gridMoveTimerMax;
         _gridMoveDirection = new Vector2(_stepDistance, 0);
     }

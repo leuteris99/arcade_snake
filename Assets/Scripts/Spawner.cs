@@ -5,7 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public int numberToSpawn; // the number of Apples to spawn each time.
-    public List<GameObject> spawnPool;
+    public GameObject spawnObject;
     public GameObject quad; // the area in which apples can spawn.
     // Start is called before the first frame update
     void Start()
@@ -30,8 +30,8 @@ public class Spawner : MonoBehaviour
     // Spawning the apples.
     public void spawnObjects()
     {
-        int randomItem = 0;
-        GameObject toSpawn;
+        //int randomItem = 0;
+        //GameObject toSpawn;
         MeshCollider c = quad.GetComponent<MeshCollider>();
 
         float screenX;
@@ -40,9 +40,9 @@ public class Spawner : MonoBehaviour
 
         for (int i = 0; i < numberToSpawn; i++)
         {
-            randomItem = Random.Range(0,spawnPool.Count);
-            toSpawn = spawnPool[randomItem];
-            toSpawn.gameObject.tag = "Apple";
+            // randomItem = Random.Range(0,spawnPool.Count);
+            // toSpawn = spawnPool[randomItem];
+            spawnObject.gameObject.tag = "Apple";
 
             screenX = Random.Range(c.bounds.min.x,c.bounds.max.x);
             float stepSize = 0.8f;
@@ -53,7 +53,7 @@ public class Spawner : MonoBehaviour
             float adjustedY = numYSteps * stepSize;
             pos = new Vector2(adjustedX,adjustedY);
 
-            Instantiate(toSpawn,pos,toSpawn.transform.rotation);
+            Instantiate(spawnObject,pos,spawnObject.transform.rotation);
         }
     }
 
