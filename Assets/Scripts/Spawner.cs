@@ -53,7 +53,26 @@ public class Spawner : MonoBehaviour
             float adjustedY = numYSteps * stepSize;
             pos = new Vector2(adjustedX,adjustedY);
 
-            Instantiate(spawnObject,pos,spawnObject.transform.rotation);
+            GameObject apple =  Instantiate(spawnObject, pos, spawnObject.transform.rotation);
+
+            //Create new GameObject for the text
+            GameObject childObj = new GameObject();
+
+            //Make apple to be parent of this text gameobject
+            childObj.transform.parent = apple.transform;
+            childObj.name = "Text Holder";
+
+            //Create TextMesh and modify its properties
+            TextMesh textMesh = childObj.AddComponent<TextMesh>();
+            int number = Random.Range(1, 100); // create a random number to put to the text
+            textMesh.text = number.ToString();
+            textMesh.characterSize = 0.1f;
+
+            //Set postion of the TextMesh with offset
+            textMesh.anchor = TextAnchor.MiddleCenter;
+            textMesh.alignment = TextAlignment.Center;
+            textMesh.transform.position = new Vector3(apple.transform.position.x, apple.transform.position.y, apple.transform.position.z);
+
         }
     }
 
