@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Spawnable
   - Apple
+  - Barrier
   layers:
   - Default
   - TransparentFX
