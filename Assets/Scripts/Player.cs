@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     private float _gridMoveTimer;
     private float _gridMoveTimerMax;
     public float _stepDistance = 0.6f;
+    public GameObject restartMenu;
     private bool _isMoving;
 
     private void Awake()
@@ -109,6 +110,7 @@ public class Player : MonoBehaviour
         if (collision.collider.CompareTag("Barrier"))
         {
             _isMoving = false;
+            restartMenu.SetActive(true);
         }
     }
 }
