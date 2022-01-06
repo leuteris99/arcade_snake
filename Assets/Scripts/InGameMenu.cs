@@ -8,4 +8,9 @@ public class InGameMenu : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name); // loads current scene
     }
+
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene(0); // Load the first scene - aka the main menu.
+    }
 }

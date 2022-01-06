@@ -19,9 +19,9 @@ public class Spawner : MonoBehaviour
     {
         // if there are no apples in the scene than respawn them.
         int c = 0;
+        string target = FindObjectOfType<ScoreManager>().GetTarget();
         foreach (GameObject o in GameObject.FindGameObjectsWithTag("Apple"))
         {
-            string target = FindObjectOfType<ScoreManager>().GetTarget();
             GameObject child = o.transform.GetChild(0).gameObject;
             string text = child.GetComponent<TextMesh>().text;
             if (CompareTargetWithNumberType(int.Parse(text), target))
