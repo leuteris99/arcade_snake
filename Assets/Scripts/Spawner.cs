@@ -7,6 +7,7 @@ public class Spawner : MonoBehaviour
     public int numberToSpawn; // the number of Apples to spawn each time.
     public GameObject spawnObject;
     public GameObject quad; // the area in which apples can spawn.
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +21,13 @@ public class Spawner : MonoBehaviour
         int c = 0;
         foreach (GameObject o in GameObject.FindGameObjectsWithTag("Apple"))
         {
-            c++;
+            string target = FindObjectOfType<ScoreManager>().GetTarget();
+            GameObject child = o.transform.GetChild(0).gameObject;
+            string text = child.GetComponent<TextMesh>().text;
+            if (CompareTargetWithNumberType(int.Parse(text), target))
+            {
+                c++;
+            }
         }
         if(c == 0){
             spawnObjects();
@@ -74,6 +81,24 @@ public class Spawner : MonoBehaviour
             textMesh.transform.position = new Vector3(apple.transform.position.x, apple.transform.position.y, apple.transform.position.z);
 
         }
+    }
+
+    private bool CompareTargetWithNumberType(int num,string target)
+    {
+        string numType;
+        if (num % 2 == 0)
+        {
+            numType = "evens";
+        }
+        else
+        {
+            numType = "odds";
+        }
+        if (numType.Equals(target))
+        {
+            return true;
+        }
+        return false;
     }
 
     // destroying all the apples.
