@@ -10,7 +10,7 @@ public class ScoreManager : MonoBehaviour
 
     public Text scoreText; // the ui score element.
     public Text targetText;
-    public int endScore = 15;
+    public int endScore = 10;
 
     private int score = 0;
     private string target;
@@ -24,18 +24,23 @@ public class ScoreManager : MonoBehaviour
     void Start()
     {
         scoreText.text = score.ToString() + printingScoreString;
-        target = GetRandomTarget();
+        target = CreateRandomTarget();
         targetText.text =  printingTargetString + target;
     }
 
     public void AddPoint(int pointNum){
         if(AddPointChecker(pointNum).Equals(target)){
-            score += 1;
+            score++;
             scoreText.text = score.ToString() + printingScoreString;
             if(score >= endScore)
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
+        }
+        else
+        {
+            score--;
+            scoreText.text = score.ToString() + printingScoreString;
         }
     }
 
@@ -48,7 +53,7 @@ public class ScoreManager : MonoBehaviour
         return "odds";
     }
 
-    string GetRandomTarget()
+    string CreateRandomTarget()
     {
         if (RandomBoolean())
         {
@@ -65,5 +70,10 @@ public class ScoreManager : MonoBehaviour
             }
             return false;
         } 
+    }
+
+    public string GetTarget()
+    {
+        return target;
     }
 }
