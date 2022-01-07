@@ -60,6 +60,18 @@ public class Spawner : MonoBehaviour
             float adjustedY = numYSteps * stepSize;
             pos = new Vector2(adjustedX,adjustedY);
 
+            while(Physics2D.OverlapCircleAll(new Vector3(pos.x,pos.y,0), 0.55f).Length > 0)
+            {
+                Debug.Log("Sphere check");
+                screenX = Random.Range(c.bounds.min.x, c.bounds.max.x);
+                numXSteps = Mathf.Floor(screenX / stepSize);
+                adjustedX = numXSteps * stepSize;
+                screenY = Random.Range(c.bounds.min.y, c.bounds.max.y);
+                numYSteps = Mathf.Floor(screenY / stepSize);
+                adjustedY = numYSteps * stepSize;
+                pos = new Vector2(adjustedX, adjustedY);
+            }
+
             GameObject apple =  Instantiate(spawnObject, pos, spawnObject.transform.rotation);
 
             //Create new GameObject for the text

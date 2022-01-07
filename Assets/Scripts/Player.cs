@@ -13,8 +13,9 @@ public class Player : MonoBehaviour
     private Vector2 _gridPosition;
     private float _gridMoveTimer;
     private float _gridMoveTimerMax;
-    public float _stepDistance = 0.6f;
+    public float _stepDistance = 0.5f;
     public GameObject restartMenu;
+    public GameObject pauseMenu;
     private bool _isMoving;
 
     private void Awake()
@@ -69,6 +70,19 @@ public class Player : MonoBehaviour
                 _gridMoveDirection.y = 0;
             }
         }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (pauseMenu.activeInHierarchy && !restartMenu.activeInHierarchy)
+            {
+                pauseMenu.SetActive(false);
+                _isMoving = true;
+            }
+            else if (!restartMenu.activeInHierarchy)
+            {
+                _isMoving = false;
+                pauseMenu.SetActive(true);
+            }
+        }
     }
 
     private void HandleGridMovement()
@@ -115,5 +129,10 @@ public class Player : MonoBehaviour
             _isMoving = false;
             restartMenu.SetActive(true);
         }
+    }
+
+    public void SetIsMoving(bool val)
+    {
+        _isMoving = val;
     }
 }
