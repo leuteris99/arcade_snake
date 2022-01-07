@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     private Vector2 _gridPosition;
     private float _gridMoveTimer;
     private float _gridMoveTimerMax;
-    public float _stepDistance = 0.6f;
+    public float _stepDistance = 0.5f;
     public GameObject restartMenu;
     public GameObject pauseMenu;
     private bool _isMoving;
