@@ -16,7 +16,9 @@ public class Player : MonoBehaviour
     public float _stepDistance = 0.5f;
     public GameObject restartMenu;
     public GameObject pauseMenu;
+    public Transform bodyPrefab;
     private bool _isMoving;
+    private List<Transform> _segmentsList;
 
     private void Awake()
     {
@@ -26,6 +28,12 @@ public class Player : MonoBehaviour
         _gridMoveTimerMax = 0.4f;
         _gridMoveTimer = _gridMoveTimerMax;
         _gridMoveDirection = new Vector2(_stepDistance, 0);
+    }
+
+    private void Start()
+    {
+        _segmentsList = new List<Transform>();
+        _segmentsList.Add(this.transform);
     }
 
     // Update is called once per frame
@@ -92,6 +100,11 @@ public class Player : MonoBehaviour
             _gridMoveTimer += Time.deltaTime;
             if (_gridMoveTimer >= _gridMoveTimerMax)
             {
+                for (int i = _segmentsList.Count - 1; i > 0; i--)
+                {
+                    _segmentsList[i].position = _segmentsList[i - 1].position;
+                    _segmentsList[i].rotation = _segmentsList[i - 1].rotation;
+                }
                 _gridPosition += _gridMoveDirection;
                 _gridMoveTimer -= _gridMoveTimerMax;
                 transform.position = new Vector3(_gridPosition.x, _gridPosition.y);
@@ -118,7 +131,15 @@ public class Player : MonoBehaviour
             string text = child.GetComponent<TextMesh>().text;
             // than destroy the Apple and a point to the scoreboard.
             Destroy(other.gameObject);
-            ScoreManager.instance.AddPoint(int.Parse(text));
+            if (ScoreManager.instance.AddPoint(int.Parse(text)))
+            {
+                Grow();
+            }
+        }
+        if (other.CompareTag("Body"))
+        {
+            _isMoving = false;
+            restartMenu.SetActive(true);
         }
     }
 
@@ -134,5 +155,19 @@ public class Player : MonoBehaviour
     public void SetIsMoving(bool val)
     {
         _isMoving = val;
+    }
+
+    private void Grow()
+    {
+        Transform segment = Instantiate(this.bodyPrefab);
+        if(_segmentsList.Count == 1)
+        {
+            segment.gameObject.tag = "FirstBody";
+        }
+
+        segment.position = _segmentsList[_segmentsList.Count - 1].position;
+        segment.rotation = _segmentsList[_segmentsList.Count - 1].rotation;
+
+        _segmentsList.Add(segment);
     }
 }

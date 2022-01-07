@@ -28,7 +28,7 @@ public class ScoreManager : MonoBehaviour
         targetText.text =  printingTargetString + target;
     }
 
-    public void AddPoint(int pointNum){
+    public bool AddPoint(int pointNum){
         if(AddPointChecker(pointNum).Equals(target)){
             score++;
             scoreText.text = score.ToString() + printingScoreString;
@@ -36,11 +36,13 @@ public class ScoreManager : MonoBehaviour
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
+            return true;
         }
         else
         {
             score--;
             scoreText.text = score.ToString() + printingScoreString;
+            return false;
         }
     }
 

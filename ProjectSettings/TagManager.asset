@@ -8,6 +8,8 @@ TagManager:
   - Apple
   - Barrier
   - Quad
+  - Body
+  - FirstBody
   layers:
   - Default
   - TransparentFX
