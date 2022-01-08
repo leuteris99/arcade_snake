@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cacheType: 1
-  lastUpdatedAtString: 2022-01-08T14:57:27.491+02:00
-  initializedAtString: 2022-01-08T14:41:54.572+02:00
+  lastUpdatedAtString: 2022-01-08T17:48:36.486+02:00
+  initializedAtString: 2022-01-08T16:12:07.822+02:00
   currentGitRemote:
     name: origin
     url: https://github.com/leuteris99/arcade_snake.git

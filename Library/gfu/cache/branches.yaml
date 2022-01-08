@@ -13,21 +13,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cacheType: 2
-  lastUpdatedAtString: 2022-01-08T14:57:27.507+02:00
-  initializedAtString: 2022-01-08T14:41:55.481+02:00
-  localBranches:
-  - name: katerina
-    tracking: origin/katerina
-  - name: lefteris
-    tracking: origin/lefteris
-  - name: main
-    tracking: origin/main
+  lastUpdatedAtString: 2022-01-08T17:48:37.541+02:00
+  initializedAtString: 2022-01-08T16:55:53.146+02:00
+  localBranches: []
   remoteBranches:
   - name: origin/katerina
-    tracking: '[None]'
-  - name: origin/lefteris
-    tracking: '[None]'
-  - name: origin/main
     tracking: '[None]'
   remotes:
   - name: origin
@@ -38,47 +28,17 @@ MonoBehaviour:
     function: 0
     token: 
   localConfigBranches:
-    keys:
-    - katerina
-    - lefteris
-    - main
-    values:
-    - name: katerina
-      remote:
-        name: origin
-        url: https://github.com/leuteris99/arcade_snake.git
-      trackingBranch: katerina
-    - name: lefteris
-      remote:
-        name: origin
-        url: https://github.com/leuteris99/arcade_snake.git
-      trackingBranch: lefteris
-    - name: main
-      remote:
-        name: origin
-        url: https://github.com/leuteris99/arcade_snake.git
-      trackingBranch: main
+    keys: []
+    values: []
   remoteConfigBranches:
     keys:
     - origin
     subKeys:
     - Values:
       - katerina
-      - lefteris
-      - main
     subKeyValues:
     - Values:
       - name: katerina
-        remote:
-          name: origin
-          url: https://github.com/leuteris99/arcade_snake.git
-        trackingBranch: 
-      - name: lefteris
-        remote:
-          name: origin
-          url: https://github.com/leuteris99/arcade_snake.git
-        trackingBranch: 
-      - name: main
         remote:
           name: origin
           url: https://github.com/leuteris99/arcade_snake.git
