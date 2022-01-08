@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     private Vector2 _gridPosition;
     private float _gridMoveTimer;
     private float _gridMoveTimerMax;
-    public float _stepDistance = 0.5f;
+    public float _stepDistance = 0.6f;
     public GameObject restartMenu;
     public GameObject pauseMenu;
     public Transform bodyPrefab;
@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
         //_stepDistance = 0.6f;
         _isMoving = true;
         _gridPosition = new Vector2Int(-3, 0);
-        _gridMoveTimerMax = 0.4f;
+        _gridMoveTimerMax = 0.6f;
         _gridMoveTimer = _gridMoveTimerMax;
         _gridMoveDirection = new Vector2(_stepDistance, 0);
     }
@@ -104,6 +104,7 @@ public class Player : MonoBehaviour
                 {
                     _segmentsList[i].position = _segmentsList[i - 1].position;
                     _segmentsList[i].rotation = _segmentsList[i - 1].rotation;
+                    
                 }
                 _gridPosition += _gridMoveDirection;
                 _gridMoveTimer -= _gridMoveTimerMax;
@@ -135,7 +136,8 @@ public class Player : MonoBehaviour
             {
                 Grow();
             }
-        }
+            
+        } 
         if (other.CompareTag("Body"))
         {
             _isMoving = false;
